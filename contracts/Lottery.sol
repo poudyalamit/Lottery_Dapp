@@ -25,7 +25,7 @@ contract Lottery {
         return
             uint(keccak256(
                     abi.encodePacked(
-                        block.difficulty,
+                        block.prevrandao,
                         block.timestamp,
                         participants.length
                     )
