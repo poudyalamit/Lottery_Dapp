@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "./Manager.css"
 const Manager = ({ state }) => {
-    // console.log(state);
     const [account, setAccount] = useState("");
-    // eslint-disable-next-line
-    const [cbalance, setCbalance] = useState(0);
+    const [Cbalance, setCbalance] = useState("");
     const [lwinner, setLwinner] = useState("No winner Yet")
 
     useEffect(() => {
         const getAccount = async () => {
             const accounts = await window.ethereum.request({ method: "eth_requestAccounts", })
-            console.log(accounts);
             setAccount(accounts[0]);
         }
         state && getAccount();
@@ -20,7 +17,6 @@ const Manager = ({ state }) => {
         const { contract } = state;
         try {
             const balance = await contract.balance();
-            console.log(balance);
             setCbalance(balance);
         } catch (err) {
             setCbalance("You are not the manager");
@@ -58,7 +54,7 @@ const Manager = ({ state }) => {
                         <button className='button1' onClick={winner}>Click for Winner</button>
                     </li>
                     <li className="list-group-item">
-                        <b>Balance:</b>
+                        <b>Balance: </b> {Cbalance}ETH
                         <button onClick={contractBalance}>Click for Balance
                         </button>
                     </li>

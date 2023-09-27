@@ -3,15 +3,18 @@ import { useState, useEffect } from 'react'
 import { ethers } from 'ethers';
 import './App.css';
 import Manager from './component/Manager';
+import Players from './component/Players';
+import { Route, Routes } from 'react-router-dom';
+import Home from './component/Home';
 function App() {
   const [state, setState] = useState({
     provider: null,
     signer: null,
     contract: null
   })
+  const contractAddress = "0xc0F852fAba08a3Ce10129b004ba0d80A8DfeA40F";
   useEffect(() => {
     const connectWallet = async () => {
-      const contractAddress = "0xc0F852fAba08a3Ce10129b004ba0d80A8DfeA40F";
       const contractAbi = abi.abi;
       try {
         const { ethereum } = window;
@@ -42,7 +45,11 @@ function App() {
   return (
     <div >
       <div className='container'>
-        <Manager state={state}/>
+        <Routes>
+        <Route  path='/' element={<Home/>}></Route>
+        <Route exact path='/manager' element={<Manager state={state}/>}></Route>
+        <Route exact path='/players' element={ <Players state={state} address={contractAddress}/>}></Route>
+        </Routes>
       </div>
     </div>
   );
