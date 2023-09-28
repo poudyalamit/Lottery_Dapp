@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 import './App.css';
 import Manager from './component/Manager';
 import Players from './component/Players';
-import { Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import Home from './component/Home';
 function App() {
   const [state, setState] = useState({
@@ -44,6 +44,29 @@ function App() {
   }, [])
   return (
     <div >
+      <nav className='navbar navbar-expand-lg navbar'>
+        <div className="container-fluid">
+          <div className="collapse navbar-collpase" id='navbarNav'>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <NavLink to='/' className="nav-lik navtext" aria-current='page'>
+                  Lottery System
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to='/manager' className='nav-link navtext' aria-current='page'
+                > Manager
+                </NavLink>
+              </li> 
+              <li className="nav-item">
+                <NavLink to='/players' className='nav-link navtext' aria-current='page'
+                > Player
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
       <div className='container'>
         <Routes>
         <Route  path='/' element={<Home/>}></Route>

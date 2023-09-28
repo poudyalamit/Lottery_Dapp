@@ -18,6 +18,7 @@ const Manager = ({ state }) => {
         try {
             const balance = await contract.balance();
             setCbalance(balance);
+            console.log(Cbalance);
         } catch (err) {
             setCbalance("You are not the manager");
             console.error(err);
