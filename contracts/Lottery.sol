@@ -12,7 +12,7 @@ contract Lottery {
     }
 
     receive() external payable {
-        require(msg.value == 1 ether);
+        require(msg.value == 0.01 ether);
         players.push(payable(msg.sender));
     }
 
@@ -41,7 +41,7 @@ contract Lottery {
         uint r = generate();
         uint index = r % players.length;
         winner = players[index];
-        winner.transfer(2 ether);
+        winner.transfer(0.03 ether);
         players = new address payable[](0);
     }
 

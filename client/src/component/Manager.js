@@ -18,7 +18,7 @@ const Manager = ({ state }) => {
         try {
             const balance = await contract.balance();
             setCbalance(balance);
-            console.log(Cbalance);
+            console.log(balance);
         } catch (err) {
             setCbalance("You are not the manager");
             console.error(err);
@@ -30,7 +30,7 @@ const Manager = ({ state }) => {
             await contract.SelectWinner();
             const lotteryWinner = await contract.winner();
             console.log(lotteryWinner);
-            setLwinner(winner);
+            setLwinner(lotteryWinner);
         } catch (err) {
             if (err.message.includes("You are not the manager")) {
                 setLwinner("You are not the manager");

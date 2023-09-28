@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 import './App.css';
 import Manager from './component/Manager';
 import Players from './component/Players';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import {  Route, Routes } from 'react-router-dom';
 import Home from './component/Home';
 function App() {
   const [state, setState] = useState({
@@ -12,7 +12,7 @@ function App() {
     signer: null,
     contract: null
   })
-  const contractAddress = "0xc0F852fAba08a3Ce10129b004ba0d80A8DfeA40F";
+  const contractAddress = "0xfa3030A74d5Df5Ab5D4555AD62065e67a978A6d0";
   useEffect(() => {
     const connectWallet = async () => {
       const contractAbi = abi.abi;
@@ -44,29 +44,6 @@ function App() {
   }, [])
   return (
     <div >
-      <nav className='navbar navbar-expand-lg navbar'>
-        <div className="container-fluid">
-          <div className="collapse navbar-collpase" id='navbarNav'>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink to='/' className="nav-lik navtext" aria-current='page'>
-                  Lottery System
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to='/manager' className='nav-link navtext' aria-current='page'
-                > Manager
-                </NavLink>
-              </li> 
-              <li className="nav-item">
-                <NavLink to='/players' className='nav-link navtext' aria-current='page'
-                > Player
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
       <div className='container'>
         <Routes>
         <Route  path='/' element={<Home/>}></Route>
