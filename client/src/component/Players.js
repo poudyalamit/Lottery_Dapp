@@ -3,10 +3,14 @@ import React, { useEffect, useState } from 'react'
 const Players = ({ state, address }) => {
     const [account, setAccount] = useState("No account connected");
     const [registeredPlayers, setRegisteredPlayers] = useState([]);
+
     useEffect(() => {
         const getAccount = async () => {
             const { ethereum } = window;
             const accounts = await ethereum.request({ method: "eth_requestAccounts", })
+            window.ethereum.on("accountsChanged",(accounts)=>{
+                setAccount(accounts[0]);
+            })
             setAccount(accounts[0]);
         }
         state && getAccount();
@@ -22,7 +26,6 @@ const Players = ({ state, address }) => {
                     return player;
                 })
             )
-            console.log(registeredPlayers);
             setRegisteredPlayers(registeredPlayers);
         }
         state.contract && getPlayers();

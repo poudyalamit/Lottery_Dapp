@@ -8,6 +8,9 @@ const Manager = ({ state }) => {
     useEffect(() => {
         const getAccount = async () => {
             const accounts = await window.ethereum.request({ method: "eth_requestAccounts", })
+            window.ethereum.on("accountsChanged",(accounts)=>{
+                setAccount(accounts[0]);
+            })    
             setAccount(accounts[0]);
         }
         state && getAccount();
@@ -15,6 +18,7 @@ const Manager = ({ state }) => {
 
     const contractBalance = async () => {
         const { contract } = state;
+        console.log(state);
         try {
             const balance = await contract.balance();
             setCbalance(balance);
@@ -25,6 +29,7 @@ const Manager = ({ state }) => {
         }
     }
     const winner = async () => {
+        console.log("clicked");
         const { contract } = state;
         try {
             await contract.SelectWinner();
